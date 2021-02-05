@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import CardSkeleton from "../../components/CardSkeleton/CardSkeleton";
 
+import { getNowPlaying } from "../../service/movieservice";
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -13,12 +15,24 @@ class Home extends React.Component {
 
         this.dummy = new Array(100).fill(true);
         this.handleOnClickDetail = this.handleOnClickDetail.bind(this);
+
+        this.page = 1;
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({ isLoading: false });
-        }, 2500);
+        getNowPlaying(this.page)
+            .then((res) => {
+                console.log("res", res);
+                if (res.statusCode === 200) {
+                    this.setState({ isLoading: false });
+                } else {
+                    throw new Error("Gagal Menarik Data");
+                }
+            })
+            .catch((err) => {
+                console.log("err", err);
+                this.setState({ isLoading: true });
+            });
     }
 
     componentWillUnmount() {}
