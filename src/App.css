@@ -3,9 +3,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    height: 100%;
 }
+
+/* CARD COMPONENT */
 .card {
     width: 150px;
     min-width: 150px;
@@ -25,13 +26,13 @@
     position: relative;
 }
 
-.text-title {
+.card-text-title {
     font-weight: 700;
     color: #000;
     margin-top: 20px;
     cursor: pointer;
 }
-.text-release-date {
+.card-text-release-date {
     font-size: 1em;
     margin: 0;
     padding: 0;
@@ -55,4 +56,156 @@
     font-size: 12px;
     padding: 0;
     line-height: 1em;
+}
+
+/* DETAIL PAGE */
+.container-detail {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    width: 100%;
+    padding: 32px;
+}
+@media (max-width: 1200px) {
+    .container-detail {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        width: 100%;
+        padding: 32px;
+    }
+}
+
+.detail-img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+}
+.detail-text-container {
+    flex: 1;
+    margin-left: 32px;
+}
+@media (max-width: 1200px) {
+    .detail-text-container {
+        flex: 1;
+        margin-left: 0;
+        margin-top: 16px;
+    }
+}
+
+.detail-text-title {
+    font-weight: 700;
+    color: white;
+    font-size: 2em;
+}
+.detail-text-release-date {
+    font-weight: 400;
+    opacity: 0.8;
+}
+.detail-text-description {
+    color: white;
+    margin-top: 8px;
+}
+.detail-text-sub-title {
+    font-weight: 500;
+    color: white;
+    font-size: 1.5em;
+}
+.rating-container-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.rating-sub-container-detail {
+    height: 60px;
+    width: 60px;
+}
+.rating-text-container-detail {
+    display: flex;
+    font-size: 9px;
+    color: white;
+    justify-content: center;
+    margin-top: -10px;
+}
+.rating-text-strong-detail {
+    font-size: 18px;
+    padding: 0;
+    line-height: 1em;
+}
+.rating-text-label-detail {
+    color: white;
+    margin-left: 8px;
+}
+
+/* SKELETON */
+.card-skeleton-image {
+    width: 100%;
+    height: 225px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+.text-skeleton-title {
+    width: 86px;
+    height: 24px;
+    border-radius: 8px;
+}
+.text-skeleton-description {
+    width: 100%;
+    height: 24px;
+    border-radius: 8px;
+}
+.rating-container-skeleton {
+    border-radius: 50%;
+}
+
+.shine {
+    background: #f6f7f8;
+    background-image: linear-gradient(
+        to right,
+        #f6f7f8 0%,
+        #edeef1 20%,
+        #f6f7f8 40%,
+        #f6f7f8 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 800% 100%;
+    display: inline-block;
+
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
+@keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
 }

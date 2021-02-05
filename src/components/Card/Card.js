@@ -3,7 +3,7 @@ import {
     buildStyles,
 } from "react-circular-progressbar";
 
-export default function App(props) {
+export default function Card(props) {
     const { onClick } = props;
     return (
         <div className="card">
@@ -33,10 +33,10 @@ export default function App(props) {
                         </div>
                     </CircularProgressbarWithChildren>
                 </div>
-                <div className="text-title" onClick={onClick}>
+                <div className="card-text-title" onClick={onClick}>
                     Title
                 </div>
-                <div className="text-release-date">Release Date</div>
+                <div className="card-text-release-date">Release Date</div>
             </div>
         </div>
     );
