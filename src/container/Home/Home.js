@@ -11,20 +11,32 @@ class Home extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
+            dataMovies: [],
         };
 
-        this.dummy = new Array(100).fill(true);
         this.handleOnClickDetail = this.handleOnClickDetail.bind(this);
 
         this.page = 1;
     }
 
     componentDidMount() {
+        this.getMovies();
+    }
+
+    componentWillUnmount() {}
+
+    getMovies() {
+        this.setState({ isLoading: true });
         getNowPlaying(this.page)
             .then((res) => {
-                console.log("res", res);
                 if (res.statusCode === 200) {
-                    this.setState({ isLoading: false });
+                    this.setState({
+                        isLoading: false,
+                        dataMovies: [
+                            ...this.state.dataMovies,
+                            ...res.data.results,
+                        ],
+                    });
                 } else {
                     throw new Error("Gagal Menarik Data");
                 }
@@ -34,8 +46,6 @@ class Home extends React.Component {
                 this.setState({ isLoading: true });
             });
     }
-
-    componentWillUnmount() {}
 
     handleOnClickDetail() {
         this.props.history.push({
@@ -58,7 +68,8 @@ class Home extends React.Component {
         });
     }
     renderList() {
-        return this.dummy.map((val, index) => {
+        const { dataMovies } = this.state;
+        return dataMovies.map((val, index) => {
             return (
                 <Card
                     key={index}

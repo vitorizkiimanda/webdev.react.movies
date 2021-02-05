@@ -42,7 +42,9 @@ class Detail extends React.Component {
                                 (release year)
                             </span>
                         </div>
-                        <div className="detail-text-description">genres</div>
+                        <div className="detail-text-description">
+                            release date(lang) - genres
+                        </div>
                         <div className="rating-container-detail">
                             <div className="rating-sub-container-detail">
                                 <CircularProgressbarWithChildren
