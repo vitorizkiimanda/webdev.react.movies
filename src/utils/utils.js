@@ -7,3 +7,9 @@ export const formatDate = (rawDate) => {
     // ouput Dec 16, 2020
     return moment(rawDate).tz("Asia/Jakarta").format("MMM DD, YYYY");
 };
+
+export const formatDateYear = (rawDate) => {
+    // input 2020-12-16
+    // ouput 2020
+    return moment(rawDate).tz("Asia/Jakarta").format("YYYY");
+};

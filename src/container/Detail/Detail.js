@@ -6,19 +6,26 @@ import {
     buildStyles,
 } from "react-circular-progressbar";
 
+import { formatDate, formatDateYear } from "../../utils/utils";
+
 class Detail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
+    renderGenres() {
+        const { data, genres } = this.props.location.state;
+        return data.genre_ids.map((val) => {
+            const seledted = genres.find((a) => a.id === val);
+            if (seledted) return seledted.name;
+            return null;
+        });
+    }
 
     render() {
-        const backdropUrl =
-            "https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/srYya1ZlI97Au4jUYAktDe3avyA.jpg";
+        const { data } = this.props.location.state;
+        const backdropUrl = `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`;
         const linearGradient =
             "to bottom right, rgba(3.53%, 7.45%, 12.94%, 1.00), rgba(3.53%, 7.45%, 12.94%, 0.84)";
         return (
@@ -27,28 +34,31 @@ class Detail extends React.Component {
                 style={{
                     backgroundSize: "cover",
                     background: `linear-gradient(${linearGradient}), url(${backdropUrl})`,
+                    width: "100%",
                 }}
             >
                 <div className="container-detail">
                     <img
-                        src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg"
+                        src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${data.poster_path}`}
                         alt=""
                         className="detail-img"
                     />
                     <div className="detail-text-container">
                         <div className="detail-text-title">
-                            Title{" "}
+                            {`${data.original_title} `}
                             <span className="detail-text-release-date">
-                                (release year)
+                                {`(${formatDateYear(data.release_date)})`}
                             </span>
                         </div>
                         <div className="detail-text-description">
-                            release date(lang) - genres
+                            {`${formatDate(data.release_date)}(${
+                                data.original_language
+                            }) - ${this.renderGenres()}`}
                         </div>
                         <div className="rating-container-detail">
                             <div className="rating-sub-container-detail">
                                 <CircularProgressbarWithChildren
-                                    value={7.3}
+                                    value={data.vote_average}
                                     maxValue={10}
                                     strokeWidth={6}
                                     background
@@ -62,7 +72,7 @@ class Detail extends React.Component {
                                 >
                                     <div className="rating-text-container-detail">
                                         <strong className="rating-text-strong-detail">
-                                            73
+                                            {data.vote_average * 10}
                                         </strong>
                                         %
                                     </div>
@@ -77,7 +87,7 @@ class Detail extends React.Component {
 
                         <div className="detail-text-sub-title">Overview</div>
                         <div className="detail-text-description">
-                            lorem ipsum dolor sir amet
+                            {data.overview}
                         </div>
                     </div>
                 </div>

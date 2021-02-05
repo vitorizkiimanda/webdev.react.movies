@@ -5,6 +5,24 @@
     justify-content: center;
     height: 100%;
 }
+@media (min-width: 1280px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 100%;
+        width: 1200px;
+        margin: auto;
+    }
+}
+
+.container-loading-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
 
 /* CARD COMPONENT */
 .card {
